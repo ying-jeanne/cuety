@@ -1,0 +1,16 @@
+{
+    "description": "Visualize Amazon EC2 metrics",
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 2,
+    "iteration": 1612520283771,
+    "links": [],
+    "refresh": false,
+    "schemaVersion": 25,
+    "style": "dark",
+    "timezone": "browser",
+    "title": "Amazon EC2",
+    "uid": "tmsOtSxZk",
+    "version": 1
+  }

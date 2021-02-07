@@ -1,7 +1,6 @@
 {
     "description": "Visualize Amazon EC2 metrics",
     "gnetId": null,
-    "graphTooltip": 0,
     "id": 2,
     "iteration": 1612520283771,
     "links": [],

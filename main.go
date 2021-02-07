@@ -108,6 +108,7 @@ func main() {
 	result := getJSONContent(inputJSONFileName)
 	rvalue := getCueRootValue(inputCUEFileName)
 	removeDefaultValue(&result, rvalue)
+	fmt.Println(result)
 	writeResultToFile(&result, resultFileName)
 	isEqual := compareResults(resultFileName, refereceFileName)
 	if isEqual {

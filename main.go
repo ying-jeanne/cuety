@@ -34,21 +34,35 @@ func getCueRootValue(inputCUEFileName string) cue.Value {
 	return rinstance.Value()
 }
 
-func removeDefaultValue(result *map[string]interface{}, rvalue cue.Value) {
-	for key, value := range *result {
+func removeDefaultValue(result map[string]interface{}, rvalue cue.Value) map[string]interface{} {
+	for key, value := range result {
 		lvField, _ := rvalue.FieldByName(key, false)
 		lv := lvField.Value
 		if lv.Exists() {
-			if defaultv, isdefault := lv.Default(); isdefault {
-				// make sure the datatype to cast to
-				interValue := value
-				_ = defaultv.Decode(&interValue)
-				if interValue == value {
-					delete(*result, key)
+			switch value.(type) {
+			case map[string]interface{}:
+				value = removeDefaultValue(value.(map[string]interface{}), lv)
+				if len(value.(map[string]interface{})) == 0 {
+					delete(result, key)
+				} else {
+					result[key] = value
+				}
+				break
+			case []interface{}:
+				break
+			default:
+				if defaultv, isdefault := lv.Default(); isdefault {
+					// make sure the datatype to cast to
+					interValue := value
+					_ = defaultv.Decode(&interValue)
+					if interValue == value {
+						delete(result, key)
+					}
 				}
 			}
 		}
 	}
+	return result
 }
 
 func writeResultToFile(result *map[string]interface{}, resultFileName string) {
@@ -107,7 +121,7 @@ var (
 func main() {
 	result := getJSONContent(inputJSONFileName)
 	rvalue := getCueRootValue(inputCUEFileName)
-	removeDefaultValue(&result, rvalue)
+	result = removeDefaultValue(result, rvalue)
 	fmt.Println(result)
 	writeResultToFile(&result, resultFileName)
 	isEqual := compareResults(resultFileName, refereceFileName)

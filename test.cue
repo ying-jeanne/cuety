@@ -10,4 +10,9 @@
     refresh: string
 	schemaVersion: int | *25
 	version: string
+	// Time range for dashboard, e.g. last 6 hours, last 7 days, etc
+	time?: {
+		from: string | *"now-6h"
+		to:   string | *"now"
+	}
 }

@@ -12,5 +12,9 @@
     "timezone": "browser",
     "title": "Amazon EC2",
     "uid": "tmsOtSxZk",
-    "version": 1
+    "version": 1,
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    }
   }

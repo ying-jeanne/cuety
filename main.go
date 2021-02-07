@@ -49,6 +49,25 @@ func removeDefaultValue(result map[string]interface{}, rvalue cue.Value) map[str
 				}
 				break
 			case []interface{}:
+				// need a function to compare the element of array
+				if defaultv, isdefault := lv.Default(); isdefault && len(value.([]interface{})) > 0 {
+					iter, _ := defaultv.List()
+					index := 0
+					theSame := true
+					for iter.Next() && index < len(value.([]interface{})) {
+						valueEle := value.([]interface{})[index]
+						interValue := valueEle
+						_ = iter.Value().Decode(&interValue)
+						if interValue != valueEle {
+							theSame = false
+							break
+						}
+						index++
+					}
+					if theSame {
+						delete(result, key)
+					}
+				}
 				break
 			default:
 				if defaultv, isdefault := lv.Default(); isdefault {

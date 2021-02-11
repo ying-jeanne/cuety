@@ -18,9 +18,9 @@ var simplify = false
 
 /*RemoveDefaultValue is taking the destination file name as input,
 and remove the default value from json input. */
-func RemoveDefaultValue(dst string) {
+func RemoveDefaultValue(pkgName string, dst string) {
 	overlay := map[string]load.Source{}
-	loadedInstances := load.Instances([]string{"."}, &load.Config{Package: "cuety", Overlay: overlay})
+	loadedInstances := load.Instances([]string{"."}, &load.Config{Package: pkgName, Overlay: overlay})
 	instances := cue.Build(loadedInstances)
 
 	for i, inst := range loadedInstances {

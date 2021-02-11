@@ -59,7 +59,7 @@ func addDefaultValue(res *map[string]interface{}, rvalue cue.Value) {
 
 var (
 	refereceFileName  string = "reference.json"
-	resultFileName    string = "output.cue"
+	resultFileName    string = "result.cue"
 	inputJSONFileName string = "test.json"
 	inputCUEFileName  string = "test.cue"
 	inputPackageName  string = "cuety"
@@ -68,7 +68,7 @@ var (
 func main() {
 	// result := getJSONContent(inputJSONFileName)
 	// rvalue := getCueRootValue(inputCUEFileName)
-	export.RemoveDefaultValue(inputPackageName)
+	export.RemoveDefaultValue(inputPackageName, resultFileName)
 	// fmt.Println(result)
 	// writeResultToFile(&result, resultFileName)
 	// isEqual := compareResults(resultFileName, refereceFileName)

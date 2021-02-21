@@ -57,12 +57,12 @@ package main
 		showIn:   int | *0
 	}] | *[]
 	// Auto-refresh interval.
-	refresh: string
+	refresh: bool
 	// Version of the JSON schema, incremented each time a Grafana update brings
 	// changes to said schema.
 	schemaVersion: int | *25
 	// Version of the dashboard, incremented each time the dashboard is updated.
-	version: string
+	version: int
 	// Dashboard panels.
 	panels?: [...{}]
 }

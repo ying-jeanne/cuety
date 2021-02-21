@@ -3,11 +3,10 @@ package main
 import (
 	"bytes"
 	gojson "encoding/json"
+	"export"
 	"fmt"
 	"io/ioutil"
 	"os"
-
-	"export"
 
 	"cuelang.org/go/cue"
 )
@@ -66,9 +65,11 @@ var (
 )
 
 func main() {
+	export.RemoveDefaultValue(inputPackageName, resultFileName)
+
+	//import.FillDefaultValue this one should be equivalent to cue eval file1 file2
 	// result := getJSONContent(inputJSONFileName)
 	// rvalue := getCueRootValue(inputCUEFileName)
-	export.RemoveDefaultValue(inputPackageName, resultFileName)
 	// fmt.Println(result)
 	// writeResultToFile(&result, resultFileName)
 	// isEqual := compareResults(resultFileName, refereceFileName)

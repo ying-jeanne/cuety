@@ -1,0 +1,9 @@
+[
+    {
+        "foldername": "panels",
+        "jsonpath": "$.panels",
+        "isArray": true,
+        "keyfiled": "type"
+    },
+    {}
+]
